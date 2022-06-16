@@ -1,0 +1,16 @@
+#
+# Lobby Balancer - Made by LoRy24
+#
+Settings:
+
+  #
+  # The host where to bind the server
+  #
+  Host: "localhost"
+
+  #
+  # The port of the infos server
+  #
+  Port: 45623
+
+

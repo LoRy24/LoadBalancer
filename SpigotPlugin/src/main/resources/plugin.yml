@@ -1,0 +1,4 @@
+name: LobbyBalancer_Spigot
+version: ${version}
+author: LoRy24
+main: com.github.lory24.lobbybalancer.spigot.Entry
