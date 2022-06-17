@@ -1,6 +1,6 @@
 package com.github.lory24.loadbalancer.spigot;
 
-import com.github.lory24.loadbalancer.spigot.utils.ServerInfos;
+import com.github.lory24.loadbalancer.spigot.utils.ServerInfosInitializer;
 import com.google.gson.Gson;
 
 import java.io.DataOutputStream;
@@ -30,7 +30,7 @@ public class InfosServer implements Runnable {
             Socket socket = this.serverSocket.accept();
             new Thread(() -> {
                 try {
-                    String serverInfosJson = new Gson().toJson(new ServerInfos().initialize());
+                    String serverInfosJson = new Gson().toJson(ServerInfosInitializer.initialize());
                     DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                     dataOutputStream.writeUTF(serverInfosJson);
                     dataOutputStream.close();
