@@ -1,6 +1,7 @@
 package com.github.lory24.loadbalancer.spigot;
 
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,6 +35,7 @@ public enum LoadBalancerSpigot {
     }
 
     public void disable() {
+        if (Bukkit.getPluginManager().isPluginEnabled(this.getPlugin())) Bukkit.getPluginManager().disablePlugin(this.getPlugin());
         this.getLogger().info("Plugin disabled!");
     }
 }
