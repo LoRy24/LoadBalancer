@@ -1,4 +1,4 @@
-package com.github.lory24.lobbybalancer.spigot;
+package com.github.lory24.loadbalancer.spigot;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -7,11 +7,11 @@ public final class Entry extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        LobbyBalancerSpigot.INSTANCE.enable(this);
+        LoadBalancerSpigot.INSTANCE.enable(this);
     }
 
     @Override
     public void onDisable() {
-        LobbyBalancerSpigot.INSTANCE.disable();
+        LoadBalancerSpigot.INSTANCE.disable();
     }
 }

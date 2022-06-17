@@ -1,4 +1,4 @@
-package com.github.lory24.lobbybalancer.spigot;
+package com.github.lory24.loadbalancer.spigot;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
 
-public enum LobbyBalancerSpigot {
+public enum LoadBalancerSpigot {
 
     /**
      * Used to access to the instance of the plugin

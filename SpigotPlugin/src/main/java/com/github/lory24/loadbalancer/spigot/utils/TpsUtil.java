@@ -1,6 +1,6 @@
-package com.github.lory24.lobbybalancer.spigot.utils;
+package com.github.lory24.loadbalancer.spigot.utils;
 
-import com.github.lory24.lobbybalancer.spigot.LobbyBalancerSpigot;
+import com.github.lory24.loadbalancer.spigot.LoadBalancerSpigot;
 import com.google.common.util.concurrent.AtomicDouble;
 import org.bukkit.Bukkit;
 
@@ -18,7 +18,7 @@ public class TpsUtil {
         AtomicBoolean finished = new AtomicBoolean(false);
 
         // Calculate the TPS
-        Bukkit.getScheduler().runTaskTimer(LobbyBalancerSpigot.INSTANCE.getPlugin(), () -> {
+        Bukkit.getScheduler().runTaskTimer(LoadBalancerSpigot.INSTANCE.getPlugin(), () -> {
             result.set(result.get() + 1);
             if (result.get() == 20) return;
             result.set(((System.currentTimeMillis() - startTime.get()) / 20) * 1000);

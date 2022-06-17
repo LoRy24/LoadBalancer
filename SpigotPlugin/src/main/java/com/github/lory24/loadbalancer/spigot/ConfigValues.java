@@ -1,4 +1,4 @@
-package com.github.lory24.lobbybalancer.spigot;
+package com.github.lory24.loadbalancer.spigot;
 
 import lombok.Getter;
 
@@ -15,6 +15,6 @@ public enum ConfigValues {
     }
 
     public Object get() {
-        return LobbyBalancerSpigot.INSTANCE.getPlugin().getConfig().get(this.path);
+        return LoadBalancerSpigot.INSTANCE.getPlugin().getConfig().get(this.path);
     }
 }

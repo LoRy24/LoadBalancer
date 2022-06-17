@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.lory24</groupId>
-    <artifactId>LobbyBalancer</artifactId>
+    <artifactId>LoadBalancer</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>

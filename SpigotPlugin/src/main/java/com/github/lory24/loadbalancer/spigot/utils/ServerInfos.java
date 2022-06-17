@@ -1,4 +1,4 @@
-package com.github.lory24.lobbybalancer.spigot.utils;
+package com.github.lory24.loadbalancer.spigot.utils;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;

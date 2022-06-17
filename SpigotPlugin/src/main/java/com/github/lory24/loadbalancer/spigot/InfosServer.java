@@ -1,6 +1,6 @@
-package com.github.lory24.lobbybalancer.spigot;
+package com.github.lory24.loadbalancer.spigot;
 
-import com.github.lory24.lobbybalancer.spigot.utils.ServerInfos;
+import com.github.lory24.loadbalancer.spigot.utils.ServerInfos;
 import com.google.gson.Gson;
 
 import java.io.DataOutputStream;
