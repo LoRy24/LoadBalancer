@@ -1,0 +1,4 @@
+name: LoadBalancer_Bungee
+version: ${version}
+main: com.github.lory24.loadbalancer.bungee
+author: LoRy24
