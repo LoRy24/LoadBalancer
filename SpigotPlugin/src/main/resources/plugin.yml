@@ -1,4 +1,4 @@
-name: LobbyBalancer_Spigot
+name: LoadBalancer_Spigot
 version: ${version}
 author: LoRy24
 main: com.github.lory24.loadbalancer.spigot.Entry
