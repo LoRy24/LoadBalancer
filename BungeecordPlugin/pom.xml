@@ -35,5 +35,11 @@
             <version>1.16-R0.5-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.30</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
