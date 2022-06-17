@@ -7,11 +7,10 @@ Settings:
 
   #
   # The plugin only supports Lobbies load-balancer. In the future it will also support multi servers
-  # load balancers. The value of this key is an array of strings, that represents the host and the port of each
+  # load balancers. The value of this key is an array of yml sections, that represents the host and the port of each
   # *LoadBalancer Server*. The port and the host of every server is set in the config of the LoadBalancer Spigot
   # plugin.
   #
-  # The format of every value is this: host|port
-  #
   lobbies:
-    - localhost|45623
+    - host: "localhost"
+      port: 45623
