@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1c8d7b8-6afa-46d7-b6de-5b47b319c4d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BungeecordPlugin/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/ConfigValues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/Entry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/InfosServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/LobbyBalancerSpigot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/utils/ServerInfos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/utils/TpsUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/resources/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/resources/plugin.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e1c8d7b8-6afa-46d7-b6de-5b47b319c4d0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,11 +51,39 @@
       <option name="presentableId" value="Default" />
       <updated>1655300024048</updated>
       <workItem from="1655300025185" duration="366000" />
-      <workItem from="1655300401900" duration="6359000" />
+      <workItem from="1655300401900" duration="6534000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1655362622046</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1655362622046</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Created the first version of the SpigotPlugin">
+      <created>1655362643329</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655362643329</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Created the Bungeecord plugin module">
+      <created>1655362662983</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1655362662983</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Created the first version of the SpigotPlugin" />
+    <MESSAGE value="Created the Bungeecord plugin module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created the Bungeecord plugin module" />
   </component>
 </project>
