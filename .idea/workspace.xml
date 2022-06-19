@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1c8d7b8-6afa-46d7-b6de-5b47b319c4d0" name="Changes" comment="Created the Bungeecord plugin module">
-      <change afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/ConfigValues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/commands/HubCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/events/PostLoginListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="e1c8d7b8-6afa-46d7-b6de-5b47b319c4d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/impl/ServerStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/impl/ServerStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/ConfigValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/ConfigValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/Entry.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/Entry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/InfosServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/InfosServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/LobbyBalancerSpigot.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/LoadBalancerSpigot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/utils/ServerInfos.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/utils/ServerInfos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/lobbybalancer/spigot/utils/TpsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/utils/TpsUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -41,29 +45,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;14&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Progetti/GitHub/LoadBalancer&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "14",
+    "last_opened_file_path": "D:/Progetti/GitHub/LoadBalancer"
   }
-}</component>
-  <component name="RunManager" selected="Application.Test">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="BungeecordPlugin" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoadBalancer Builds [clean,install,package]" type="MavenRunConfiguration" factoryName="Maven">
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Load [clean,install,package]" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -90,15 +83,6 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Application.Test" />
-      <item itemvalue="Maven.LoadBalancer Builds [clean,install,package]" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Test" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,9 +94,7 @@
       <updated>1655300024048</updated>
       <workItem from="1655300025185" duration="366000" />
       <workItem from="1655300401900" duration="6534000" />
-      <workItem from="1655467256988" duration="18691000" />
-      <workItem from="1655549239520" duration="1817000" />
-      <workItem from="1655643082755" duration="3633000" />
+      <workItem from="1655467256988" duration="2785000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1655362622046</created>
