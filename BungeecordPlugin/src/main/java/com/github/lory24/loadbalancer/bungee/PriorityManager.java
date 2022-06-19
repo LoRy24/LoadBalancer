@@ -111,7 +111,6 @@ public class PriorityManager {
         for (Map.Entry<ServerStats, Double> e: points.entrySet()) finalResult.add(e.getKey());
 
         // Return the result
-        Collections.reverse(finalResult);
         return finalResult;
     }
 
