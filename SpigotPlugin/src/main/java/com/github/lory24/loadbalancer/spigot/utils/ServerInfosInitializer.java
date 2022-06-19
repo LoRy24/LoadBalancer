@@ -1,6 +1,5 @@
 package com.github.lory24.loadbalancer.spigot.utils;
 
-import com.github.lory24.loadbalancer.api.ServerInfos;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
