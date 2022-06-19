@@ -25,3 +25,13 @@ settings:
   # The hub command message
   #
   hubCommandMessage: "&aTeleporting to hub server..."
+
+  #
+  # The message for when the player tries to execute the hub command without wait for *n* milliseconds
+  #
+  hubCommandInCooldownMessage: "&cPlease wait before executing this command again."
+
+  #
+  # The amount of ms to wait before executing the hub command again
+  #
+  hubCommandCooldownMS: 2000

@@ -18,7 +18,12 @@ public class ConfigValues {
     // Messages
     @Getter
     private String allLobbiesOfflineMessage,
-                   hubCommandMessage;
+                   hubCommandMessage,
+                   hubCommandInCooldownMessage;
+
+    // Hub command cooldown
+    @Getter
+    private int hubCommandCooldownMS;
 
     @SuppressWarnings("unchecked")
     public void loadConfig() {
@@ -29,6 +34,8 @@ public class ConfigValues {
         this.lobbiesServersFromYAML = (ArrayList<Map<String, Object>>) yamlConfigSettings.get("lobbies");
         this.allLobbiesOfflineMessage = color((String) yamlConfigSettings.get("allLobbiesOfflineMessage"));
         this.hubCommandMessage = color((String) yamlConfigSettings.get("hubCommandMessage"));
+        this.hubCommandInCooldownMessage = color((String) yamlConfigSettings.get("hubCommandInCooldownMessage"));
+        this.hubCommandCooldownMS = (int) yamlConfigSettings.get("hubCommandCooldownMS");
     }
 
     @Contract("_ -> new")
