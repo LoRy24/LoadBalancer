@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afd402c1-c0ef-4524-b962-2fe196c63c10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/ConfigValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/ConfigValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/commands/HubCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/commands/HubCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +97,7 @@
       <updated>1655652060718</updated>
       <workItem from="1655652062986" duration="2412000" />
       <workItem from="1655654484288" duration="4171000" />
-      <workItem from="1655663490575" duration="1074000" />
+      <workItem from="1655663490575" duration="1293000" />
     </task>
     <servers />
   </component>
