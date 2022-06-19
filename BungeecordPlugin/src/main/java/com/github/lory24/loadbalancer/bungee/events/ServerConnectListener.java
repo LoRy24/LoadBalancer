@@ -42,11 +42,11 @@ public class ServerConnectListener implements Listener {
                 connected = true;
             }
 
-            if (connected) return;
-
-            event.getPlayer().disconnect(new TextComponent(LoadBalancerBungee.INSTANCE
-                    .getConfigValues().getAllLobbiesOfflineMessage()));
-            event.setCancelled(true);
+            if (!connected) {
+                event.getPlayer().disconnect(new TextComponent(LoadBalancerBungee.INSTANCE
+                        .getConfigValues().getAllLobbiesOfflineMessage()));
+                event.setCancelled(true);
+            }
         }
     }
 }

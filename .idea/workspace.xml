@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afd402c1-c0ef-4524-b962-2fe196c63c10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/LoadBalancerBungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/LoadBalancerBungee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/PriorityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/PriorityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/events/ServerConnectListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/events/ServerConnectListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1655652060718</updated>
       <workItem from="1655652062986" duration="2412000" />
-      <workItem from="1655654484288" duration="3597000" />
+      <workItem from="1655654484288" duration="4171000" />
     </task>
     <servers />
   </component>
