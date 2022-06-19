@@ -28,33 +28,52 @@ public class PriorityManager {
     public List<ServerStats> bestLobby = new ArrayList<>();
 
     public void connectToBestLobby(@NotNull ProxiedPlayer proxiedPlayer) {
-        TextComponent disconnectMessage = new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues().getAllLobbiesOfflineMessage());
-        if (bestLobby.size() == 0 && !proxiedPlayer.isConnected()) {
-            proxiedPlayer.disconnect(disconnectMessage);
+        connectToBestLobbyBlock: {
+
+            // If there isn't any joinable server
+            if (bestLobby.size() == 0) break connectToBestLobbyBlock;
+
+            boolean found = false;
+            ServerInfo serverInfo = null;
+            for (ServerStats stats : bestLobby) {
+                if (proxiedPlayer.getServer().getInfo().getName().equals(stats.getServerName()) || !LobbiesUtils.isLobbyReachable(ProxyServer.getInstance()
+                        .getServerInfo(stats.getServerName()).getSocketAddress()) || ProxyServer.getInstance().getServerInfo(stats.getServerName()).getPlayers().size() == stats
+                        .getServerInfos().getMaxPlayers()) continue;
+                found = true;
+                serverInfo = ProxyServer.getInstance().getServerInfo(stats.getServerName());
+                break;
+            }
+
+            // If the server was not found
+            if (!found) break connectToBestLobbyBlock;
+
+            proxiedPlayer.connect(serverInfo);
             return;
-        } else if (bestLobby.size() == 0) proxiedPlayer.sendMessage(disconnectMessage);
-        int i = 0;
-        while (i == bestLobby.size() - 1 && (proxiedPlayer.getServer().getInfo().getName().equals(bestLobby.get(i).getServerName()) || !LobbiesUtils
-                .isLobbyReachable(ProxyServer.getInstance().getServerInfo(bestLobby.get(i).getServerName())
-                        .getSocketAddress()))) i++;
-        ServerInfo serverInfo = ProxyServer.getInstance().getServers()
-                .get(bestLobby.get(i).getServerName());
-        proxiedPlayer.connect(serverInfo);
+        }
+        TextComponent disconnectMessage = new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues()
+                .getAllLobbiesOfflineMessage());
+        proxiedPlayer.sendMessage(disconnectMessage);
     }
 
     public void run()  {
         // Create the lobbies servers arraylist. This will store all the server without any order
-        ProxyServer.getInstance().getScheduler().schedule(LoadBalancerBungee.INSTANCE.getPlugin(), () -> {
-            final List<ServerStats> allLobbiesServers = new ArrayList<>();
-            ArrayList<Map<String, Object>> lobbiesServersFromYAML = LoadBalancerBungee.INSTANCE.getConfigValues().getLobbiesServersFromYAML();
-            for (Map<String, Object> map: lobbiesServersFromYAML) allLobbiesServers.add(new ServerStats((String) map.get("host"), (int) map.get("port"), (String) map.get("inProxyConfigName")));
+        ProxyServer.getInstance().getScheduler().schedule(LoadBalancerBungee.INSTANCE.getPlugin(), this::updateList, 0, 500,
+                TimeUnit.MILLISECONDS);
+    }
 
-            // Get the data from every server
-            allLobbiesServers.replaceAll(stats -> stats.setServerInfos(getServerInfos(stats)));
+    /**
+     * UNSAFE FUNCTION
+     */
+    public void updateList() {
+        final List<ServerStats> allLobbiesServers = new ArrayList<>();
+        ArrayList<Map<String, Object>> lobbiesServersFromYAML = LoadBalancerBungee.INSTANCE.getConfigValues().getLobbiesServersFromYAML();
+        for (Map<String, Object> map: lobbiesServersFromYAML) allLobbiesServers.add(new ServerStats((String) map.get("host"), (int) map.get("port"), (String) map.get("inProxyConfigName")));
 
-            // Start the magic: Update the order of the servers.
-            this.bestLobby = this.orderTheServers(allLobbiesServers);
-        }, 0, 500, TimeUnit.MILLISECONDS);
+        // Get the data from every server
+        allLobbiesServers.replaceAll(stats -> stats.setServerInfos(getServerInfos(stats)));
+
+        // Start the magic: Update the order of the servers.
+        this.bestLobby = this.orderTheServers(allLobbiesServers);
     }
 
     /**

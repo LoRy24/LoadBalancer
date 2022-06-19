@@ -28,6 +28,8 @@ public class HubCommand extends Command {
         ConfigValues configValues = LoadBalancerBungee.INSTANCE.getConfigValues();
         ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 
+        if (LoadBalancerBungee.INSTANCE.getPriorityManager().bestLobby.size() == 1) return;
+
         // If the player is in cooldown, send him a message and then return
         if (!playersInCooldown.contains(proxiedPlayer)) {
             // Add in cooldown
