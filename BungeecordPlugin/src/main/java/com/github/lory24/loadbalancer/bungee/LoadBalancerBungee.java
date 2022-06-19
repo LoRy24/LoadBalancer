@@ -8,10 +8,7 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.logging.Logger;
 
 public enum LoadBalancerBungee {
@@ -77,11 +74,15 @@ public enum LoadBalancerBungee {
      */
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnstableApiUsage"})
     private void loadConfig() throws IOException {
-        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir(); // Create the datafolder
-        configFile = new File(plugin.getDataFolder(), "config.yml");
-        this.configInputStream = new FileInputStream(this.configFile);
-        if (configFile.exists()) return;
-        configFile.createNewFile();
-        Files.write(plugin.getResourceAsStream("config.yml").readAllBytes(), configFile);
+        configLoadingProcess: {
+            if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir(); // Create the datafolder
+            configFile = new File(plugin.getDataFolder(), "config.yml");
+            if (configFile.exists()) break configLoadingProcess;
+            configFile.createNewFile();
+            byte[] bytes = new byte[plugin.getResourceAsStream("config.yml").available()];
+            plugin.getResourceAsStream("config.yml").read(bytes);
+            Files.write(bytes, configFile);
+        }
+        this.configInputStream = java.nio.file.Files.newInputStream(this.configFile.toPath());
     }
 }

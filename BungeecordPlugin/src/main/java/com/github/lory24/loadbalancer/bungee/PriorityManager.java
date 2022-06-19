@@ -1,6 +1,6 @@
 package com.github.lory24.loadbalancer.bungee;
 
-import com.github.lory24.loadbalancer.api.ServerInfos;
+import com.github.lory24.loadbalancer.bungee.impl.ServerInfos;
 import com.github.lory24.loadbalancer.bungee.impl.ServerStats;
 import com.google.gson.Gson;
 import net.md_5.bungee.api.ProxyServer;
@@ -8,7 +8,6 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.DataInputStream;
 import java.net.InetSocketAddress;
@@ -28,11 +27,10 @@ public class PriorityManager {
         proxiedPlayer.connect(serverInfo);
     }
 
-    @SuppressWarnings("unchecked")
-    private @NotNull List<ServerStats> getBestLobby() {
+    private @NotNull List<ServerStats> getBestLobby()  {
         // Create the lobbies servers arraylist. This will store all the server without any order
         final List<ServerStats> allLobbiesServers = new ArrayList<>();
-        ArrayList<Map<String, Object>> lobbiesServersFromYAML = (ArrayList<Map<String, Object>>) ((Map<String, Object>)((Map<String, Object>) new Yaml().load(LoadBalancerBungee.INSTANCE.getConfigInputStream())).get("settings")).get("lobbies");
+        ArrayList<Map<String, Object>> lobbiesServersFromYAML = LoadBalancerBungee.INSTANCE.getConfigValues().getLobbiesServersFromYAML();
         for (Map<String, Object> map: lobbiesServersFromYAML) allLobbiesServers.add(new ServerStats((String) map.get("host"), (int) map.get("port"), (String) map.get("inProxyConfigName")));
 
         // Get the data from every server
@@ -58,7 +56,8 @@ public class PriorityManager {
             socket.connect(new InetSocketAddress(stats.getServerHost(), stats.getServerPort()));
             serverInfos = new Gson().fromJson(new DataInputStream(socket.getInputStream()).readUTF(), ServerInfos.class);
             socket.close(); // Close the connection
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
             // Skip the error: The server will be unreachable, so the loadbalancer will skip it
         }
         return serverInfos;
@@ -85,20 +84,20 @@ public class PriorityManager {
                 value.getServerInfos().getOnlinePlayers() == value.getServerInfos().getMaxPlayers());
 
         // Points system
-        LinkedHashMap<ServerStats, Double> points = new LinkedHashMap<>() {{ for (ServerStats serverStats: stats) put(serverStats, .0D); }};
+        LinkedHashMap<ServerStats, Double> points = new LinkedHashMap<ServerStats, Double>() {{ for (ServerStats serverStats: stats) put(serverStats, .0D); }};
 
         // The first check will be the % of used slots of the lobby server
-        LinkedHashMap<ServerStats, Double> usedSlots = orderByValues(new LinkedHashMap<>()
+        LinkedHashMap<ServerStats, Double> usedSlots = orderByValues(new LinkedHashMap<ServerStats, Double>()
             {{ for (ServerStats serverStats: stats) put(serverStats, (double) serverStats.getServerInfos().getOnlinePlayers() / serverStats.getServerInfos().getMaxPlayers()); }});
         points.replace(getFirstKey(usedSlots), points.get(getFirstKey(usedSlots)) +1);
 
         // The second check is the MB of used ram
-        LinkedHashMap<ServerStats, Double> usedRam = orderByValues(new LinkedHashMap<>()
+        LinkedHashMap<ServerStats, Double> usedRam = orderByValues(new LinkedHashMap<ServerStats, Double>()
             {{ for (ServerStats serverStats: stats) put(serverStats, (double) serverStats.getServerInfos().getRamUsageInBytes() / 1000000); }});
         points.replace(getFirstKey(usedRam), points.get(getFirstKey(usedRam)) +1);
 
         // The last check is the TPS one
-        LinkedHashMap<ServerStats, Double> tps = orderByValues(new LinkedHashMap<>()
+        LinkedHashMap<ServerStats, Double> tps = orderByValues(new LinkedHashMap<ServerStats, Double>()
             {{ for (ServerStats serverStats: stats) put(serverStats, serverStats.getServerInfos().getTps()); }});
         points.replace(getLastKey(tps), points.get(getLastKey(tps)) +1);
 
@@ -118,7 +117,7 @@ public class PriorityManager {
         // Sort the list by the values of the entries
         List<Map.Entry<ServerStats, Double>> entryList = new ArrayList<>(hashMap.entrySet());
         entryList.sort(Map.Entry.comparingByValue());
-        return new LinkedHashMap<>() {{
+        return new LinkedHashMap<ServerStats, Double>() {{
             for (Map.Entry<ServerStats, Double> e: entryList)
                 put(e.getKey(), e.getValue());
         }};

@@ -21,21 +21,24 @@ public enum LoadBalancerSpigot {
     @Getter
     private Logger logger;
 
+    private Thread socketThread;
+
     public void enable(@NotNull JavaPlugin plugin) {
         this.plugin = plugin;
         this.logger = plugin.getLogger();
         this.plugin.saveDefaultConfig();
 
         // Start the server thread
-        Thread t = new Thread(new InfosServer());
-        t.setName("LobbyBalancer-Server");
-        t.start();
+        socketThread = new Thread(new InfosServer());
+        socketThread.setName("LobbyBalancer-Server");
+        socketThread.start();
 
         this.getLogger().info("Plugin enabled at version " + plugin.getDescription().getVersion() + "!");
     }
 
     public void disable() {
         if (Bukkit.getPluginManager().isPluginEnabled(this.getPlugin())) Bukkit.getPluginManager().disablePlugin(this.getPlugin());
+        socketThread.interrupt();
         this.getLogger().info("Plugin disabled!");
     }
 }

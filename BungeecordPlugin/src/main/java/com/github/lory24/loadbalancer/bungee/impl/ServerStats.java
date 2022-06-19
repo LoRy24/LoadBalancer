@@ -1,6 +1,5 @@
 package com.github.lory24.loadbalancer.bungee.impl;
 
-import com.github.lory24.loadbalancer.api.ServerInfos;
 import lombok.Getter;
 
 public class ServerStats {
