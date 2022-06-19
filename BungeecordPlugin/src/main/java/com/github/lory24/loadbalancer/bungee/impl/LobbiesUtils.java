@@ -2,6 +2,9 @@ package com.github.lory24.loadbalancer.bungee.impl;
 
 import com.github.lory24.loadbalancer.bungee.LoadBalancerBungee;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.stream.Collectors;
 
 public class LobbiesUtils {
@@ -9,5 +12,20 @@ public class LobbiesUtils {
     public static boolean isLobby(String serverName) {
         return LoadBalancerBungee.INSTANCE.getPriorityManager().bestLobby.stream().map(ServerStats::getServerName)
                 .collect(Collectors.toList()).contains(serverName);
+    }
+
+    public static boolean isLobbyReachable(SocketAddress socketAddress) {
+        // Check if the server is online
+        try {
+            Socket socket = new Socket();
+            socket.setTcpNoDelay(true);
+            socket.setSoTimeout(50);
+            socket.connect(socketAddress);
+            // If the connection success, then the kick was intentionally executed by the server, so the event can stop here
+            socket.close();
+            return true;
+        } catch (IOException ignored) { // Ignore the exception and teleport the player on another server
+            return false;
+        }
     }
 }

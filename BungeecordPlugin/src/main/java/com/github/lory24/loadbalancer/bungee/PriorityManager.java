@@ -1,5 +1,6 @@
 package com.github.lory24.loadbalancer.bungee;
 
+import com.github.lory24.loadbalancer.bungee.impl.LobbiesUtils;
 import com.github.lory24.loadbalancer.bungee.impl.ServerInfos;
 import com.github.lory24.loadbalancer.bungee.impl.ServerStats;
 import com.google.gson.Gson;
@@ -27,16 +28,17 @@ public class PriorityManager {
     public List<ServerStats> bestLobby = new ArrayList<>();
 
     public void connectToBestLobby(@NotNull ProxiedPlayer proxiedPlayer) {
-        if (bestLobby.size() == 1) return;
         TextComponent disconnectMessage = new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues().getAllLobbiesOfflineMessage());
         if (bestLobby.size() == 0 && !proxiedPlayer.isConnected()) {
             proxiedPlayer.disconnect(disconnectMessage);
             return;
         } else if (bestLobby.size() == 0) proxiedPlayer.sendMessage(disconnectMessage);
         int i = 0;
-        while (proxiedPlayer.getServer().getInfo().getName().equals(bestLobby.get(i).getServerName())) i++;
-        ServerInfo serverInfo = ProxyServer.getInstance().getServers().get(
-                bestLobby.get(i).getServerName());
+        while (i == bestLobby.size() - 1 && (proxiedPlayer.getServer().getInfo().getName().equals(bestLobby.get(i).getServerName()) || !LobbiesUtils
+                .isLobbyReachable(ProxyServer.getInstance().getServerInfo(bestLobby.get(i).getServerName())
+                        .getSocketAddress()))) i++;
+        ServerInfo serverInfo = ProxyServer.getInstance().getServers()
+                .get(bestLobby.get(i).getServerName());
         proxiedPlayer.connect(serverInfo);
     }
 
@@ -132,10 +134,8 @@ public class PriorityManager {
         // Sort the list by the values of the entries
         List<Map.Entry<ServerStats, Double>> entryList = new ArrayList<>(hashMap.entrySet());
         entryList.sort(Map.Entry.comparingByValue());
-        return new LinkedHashMap<ServerStats, Double>() {{
-            for (Map.Entry<ServerStats, Double> e: entryList)
-                put(e.getKey(), e.getValue());
-        }};
+        return new LinkedHashMap<ServerStats, Double>()
+            {{ entryList.forEach(e -> put(e.getKey(), e.getValue())); }};
     }
 
     private ServerStats getLastKey(@NotNull LinkedHashMap<ServerStats, Double> hashMap) {

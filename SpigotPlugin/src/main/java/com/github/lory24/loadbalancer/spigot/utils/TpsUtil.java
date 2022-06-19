@@ -14,15 +14,20 @@ public class TpsUtil {
     @SuppressWarnings({"StatementWithEmptyBody", "IntegerDivisionInFloatingPointContext"})
     public static double getCurrentTPS(String format) {
         AtomicDouble result = new AtomicDouble();
-        AtomicLong startTime = new AtomicLong(System.currentTimeMillis());
+        AtomicLong startTime = new AtomicLong();
         AtomicBoolean finished = new AtomicBoolean(false);
 
         // Calculate the TPS
+        startTime.set(System.currentTimeMillis());
         Bukkit.getScheduler().runTaskTimer(LoadBalancerSpigot.INSTANCE.getPlugin(), () -> {
-            result.set(result.get() + 1);
-            if (result.get() == 20) return;
-            result.set((20 / (System.currentTimeMillis() - startTime.get())) * 10);
-            finished.set(true);
+            try {
+                result.set(result.get() + 1);
+                if (result.get() == 20) return;
+                result.set((20 / (System.currentTimeMillis() - startTime.get())) * 10);
+                finished.set(true);
+            } catch (Exception ignored) {
+                result.set(0);
+            }
         }, 0, 1L);
 
         while (!finished.get());

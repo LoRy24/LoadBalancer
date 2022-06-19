@@ -2,14 +2,19 @@ package com.github.lory24.loadbalancer.bungee;
 
 import com.github.lory24.loadbalancer.bungee.commands.HubCommand;
 import com.github.lory24.loadbalancer.bungee.events.ServerConnectListener;
+import com.github.lory24.loadbalancer.bungee.events.ServerKickListener;
 import com.google.common.io.Files;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.logging.Logger;
+
+import static java.nio.file.Files.newInputStream;
 
 public enum LoadBalancerBungee {
 
@@ -41,11 +46,13 @@ public enum LoadBalancerBungee {
     @Getter
     private PriorityManager priorityManager;
 
-    public void enable(@NotNull Plugin plugin) throws IOException {
+    public void enable(@NotNull Plugin plugin)
+            throws IOException {
         this.plugin = plugin;
         this.logger = plugin.getLogger();
 
         // Load the plugin's config
+        configFile = new File(plugin.getDataFolder(), "config.yml");
         this.loadConfig();
         this.configValues = new ConfigValues();
         this.configValues.loadConfig();
@@ -59,10 +66,14 @@ public enum LoadBalancerBungee {
                 .registerCommand(this.getPlugin(), new HubCommand());
 
         // Register the events
-        ProxyServer.getInstance().getPluginManager()
-                .registerListener(this.getPlugin(), new ServerConnectListener());
+        this.registerEvents();
 
         getLogger().info("Plugin enabled at version " + this.getPlugin().getDescription().getVersion() + "!");
+    }
+
+    private void registerEvents() {
+        Arrays.stream(new Listener[]{new ServerConnectListener(), new ServerKickListener()}).forEach(l -> ProxyServer.getInstance()
+                .getPluginManager().registerListener(this.getPlugin(), l));
     }
 
     public void disable() {
@@ -77,13 +88,12 @@ public enum LoadBalancerBungee {
     private void loadConfig() throws IOException {
         configLoadingProcess: {
             if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir(); // Create the datafolder
-            configFile = new File(plugin.getDataFolder(), "config.yml");
             if (configFile.exists()) break configLoadingProcess;
             configFile.createNewFile();
             byte[] bytes = new byte[plugin.getResourceAsStream("config.yml").available()];
             plugin.getResourceAsStream("config.yml").read(bytes);
             Files.write(bytes, configFile);
         }
-        this.configInputStream = java.nio.file.Files.newInputStream(this.configFile.toPath());
+        this.configInputStream = newInputStream(this.configFile.toPath());
     }
 }
