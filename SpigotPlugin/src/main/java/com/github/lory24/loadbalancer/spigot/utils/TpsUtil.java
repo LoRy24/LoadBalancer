@@ -21,11 +21,12 @@ public class TpsUtil {
         Bukkit.getScheduler().runTaskTimer(LoadBalancerSpigot.INSTANCE.getPlugin(), () -> {
             result.set(result.get() + 1);
             if (result.get() == 20) return;
-            result.set(((System.currentTimeMillis() - startTime.get()) / 20) * 1000);
+            result.set((20 / (System.currentTimeMillis() - startTime.get())) * 10);
             finished.set(true);
         }, 0, 1L);
 
         while (!finished.get());
-        return Double.parseDouble(String.format(format, result.get()));
+        return Double.parseDouble(String.format(format, result.get())
+                .replace(',', '.'));
     }
 }

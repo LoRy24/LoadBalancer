@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afd402c1-c0ef-4524-b962-2fe196c63c10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LoadBalancerAPI/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancerAPI/src/main/java/com/github/lory24/loadbalancer/api/ServerInfos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/LoadBalancerBungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/LoadBalancerBungee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/PriorityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/PriorityManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/events/PostLoginListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/BungeecordPlugin/src/main/java/com/github/lory24/loadbalancer/bungee/events/ServerConnectListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/utils/TpsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpigotPlugin/src/main/java/com/github/lory24/loadbalancer/spigot/utils/TpsUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,18 +37,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "D:/Progetti/GitHub/LoadBalancer",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Progetti/GitHub/LoadBalancer&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="LoadBalancerAPI" />
@@ -97,7 +99,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1655652060718</updated>
-      <workItem from="1655652062986" duration="163000" />
+      <workItem from="1655652062986" duration="2412000" />
+      <workItem from="1655654484288" duration="314000" />
     </task>
     <servers />
   </component>
