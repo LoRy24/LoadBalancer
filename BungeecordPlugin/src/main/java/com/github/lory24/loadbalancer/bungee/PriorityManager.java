@@ -14,6 +14,7 @@ import java.io.DataInputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * NOTES:
@@ -23,27 +24,35 @@ import java.util.*;
  */
 public class PriorityManager {
 
+    public List<ServerStats> bestLobby = new ArrayList<>();
+
     public void connectToBestLobby(@NotNull ProxiedPlayer proxiedPlayer) {
-        List<ServerStats> stats = getBestLobby();
-        if (stats.size() == 0) {
-            proxiedPlayer.disconnect(new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues().getAllLobbiesOfflineMessage()));
+        if (bestLobby.size() == 1) return;
+        TextComponent disconnectMessage = new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues().getAllLobbiesOfflineMessage());
+        if (bestLobby.size() == 0 && !proxiedPlayer.isConnected()) {
+            proxiedPlayer.disconnect(disconnectMessage);
             return;
-        }
-        final ServerInfo serverInfo = ProxyServer.getInstance().getServers().get(stats.get(0).getServerName());
+        } else if (bestLobby.size() == 0) proxiedPlayer.sendMessage(disconnectMessage);
+        int i = 0;
+        while (proxiedPlayer.getServer().getInfo().getName().equals(bestLobby.get(i).getServerName())) i++;
+        ServerInfo serverInfo = ProxyServer.getInstance().getServers().get(
+                bestLobby.get(i).getServerName());
         proxiedPlayer.connect(serverInfo);
     }
 
-    public @NotNull List<ServerStats> getBestLobby()  {
+    public void run()  {
         // Create the lobbies servers arraylist. This will store all the server without any order
-        final List<ServerStats> allLobbiesServers = new ArrayList<>();
-        ArrayList<Map<String, Object>> lobbiesServersFromYAML = LoadBalancerBungee.INSTANCE.getConfigValues().getLobbiesServersFromYAML();
-        for (Map<String, Object> map: lobbiesServersFromYAML) allLobbiesServers.add(new ServerStats((String) map.get("host"), (int) map.get("port"), (String) map.get("inProxyConfigName")));
+        ProxyServer.getInstance().getScheduler().schedule(LoadBalancerBungee.INSTANCE.getPlugin(), () -> {
+            final List<ServerStats> allLobbiesServers = new ArrayList<>();
+            ArrayList<Map<String, Object>> lobbiesServersFromYAML = LoadBalancerBungee.INSTANCE.getConfigValues().getLobbiesServersFromYAML();
+            for (Map<String, Object> map: lobbiesServersFromYAML) allLobbiesServers.add(new ServerStats((String) map.get("host"), (int) map.get("port"), (String) map.get("inProxyConfigName")));
 
-        // Get the data from every server
-        allLobbiesServers.replaceAll(stats -> stats.setServerInfos(getServerInfos(stats)));
+            // Get the data from every server
+            allLobbiesServers.replaceAll(stats -> stats.setServerInfos(getServerInfos(stats)));
 
-        // Start the magic: Update the order of the servers.
-        return this.orderTheServers(allLobbiesServers);
+            // Start the magic: Update the order of the servers.
+            this.bestLobby = this.orderTheServers(allLobbiesServers);
+        }, 0, 500, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -85,8 +94,9 @@ public class PriorityManager {
         List<ServerStats> finalResult = new ArrayList<>();
 
         // Remove the values that won't be used
-        stats.removeIf(value -> value == null ||
+        stats.removeIf(value -> value == null || value.getServerInfos() == null ||
                 value.getServerInfos().getOnlinePlayers() == value.getServerInfos().getMaxPlayers());
+        if (stats.size() == 0) return new ArrayList<>();
 
         // Points system
         LinkedHashMap<ServerStats, Double> points = new LinkedHashMap<ServerStats, Double>() {{ for (ServerStats serverStats: stats) put(serverStats, .0D); }};

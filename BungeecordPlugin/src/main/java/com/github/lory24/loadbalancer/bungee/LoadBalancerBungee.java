@@ -52,6 +52,7 @@ public enum LoadBalancerBungee {
 
         // Instance the priorityManager
         this.priorityManager = new PriorityManager();
+        this.priorityManager.run();
 
         // Register the commands
         ProxyServer.getInstance().getPluginManager()
