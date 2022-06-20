@@ -1,6 +1,7 @@
 package com.github.lory24.loadbalancer.bungee;
 
 import com.github.lory24.loadbalancer.bungee.commands.HubCommand;
+import com.github.lory24.loadbalancer.bungee.events.PluginMessageListener;
 import com.github.lory24.loadbalancer.bungee.events.ServerConnectListener;
 import com.google.common.io.Files;
 import lombok.Getter;
@@ -56,13 +57,15 @@ public enum LoadBalancerBungee {
         this.configValues = new ConfigValues();
         this.configValues.loadConfig();
 
+        // Register the loadbalancer channel
+        ProxyServer.getInstance().registerChannel("LoadBalancer");
+
         // Instance the priorityManager
         this.priorityManager = new PriorityManager();
         this.priorityManager.run();
 
         // Register the commands
-        ProxyServer.getInstance().getPluginManager()
-                .registerCommand(this.getPlugin(), new HubCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this.getPlugin(), new HubCommand());
 
         // Register the events
         this.registerEvents();
@@ -71,7 +74,7 @@ public enum LoadBalancerBungee {
     }
 
     private void registerEvents() {
-        Arrays.stream(new Listener[]{new ServerConnectListener()}).forEach(l -> ProxyServer.getInstance()
+        Arrays.stream(new Listener[]{new ServerConnectListener(), new PluginMessageListener()}).forEach(l -> ProxyServer.getInstance()
                 .getPluginManager().registerListener(this.getPlugin(), l));
     }
 
