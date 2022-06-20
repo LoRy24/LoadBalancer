@@ -31,7 +31,7 @@ public class InfosServer implements Runnable {
     }
 
     private void listening() throws IOException {
-        while (!enabled) {
+        while (enabled) {
             Socket socket = this.serverSocket.accept();
             new Thread(() -> {
                 try {
