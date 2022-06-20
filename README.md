@@ -1,2 +1,1 @@
-# LoadBalancer
-A Minecraft load balancer first designed to balance the lobbies load.
+![Banner](https://github.com/LoRy24/LoadBalancer/blob/master/Graphics/LoadBalancerBanner.png)
