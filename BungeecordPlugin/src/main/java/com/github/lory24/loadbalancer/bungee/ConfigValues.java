@@ -37,7 +37,7 @@ public class ConfigValues {
         this.hubCommandMessage = color((String) yamlConfigSettings.get("hubCommandMessage"));
         this.hubCommandInCooldownMessage = color((String) yamlConfigSettings.get("hubCommandInCooldownMessage"));
         this.hubCommandCooldownMS = (int) yamlConfigSettings.get("hubCommandCooldownMS");
-        this.onlyOneLobbyAviable = (String) yamlConfigSettings.get("onlyOneLobbyAviable");
+        this.onlyOneLobbyAviable = color((String) yamlConfigSettings.get("onlyOneLobbyAviable"));
     }
 
     @Contract("_ -> new")
