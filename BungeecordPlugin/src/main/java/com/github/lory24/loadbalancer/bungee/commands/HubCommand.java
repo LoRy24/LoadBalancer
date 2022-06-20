@@ -2,6 +2,7 @@ package com.github.lory24.loadbalancer.bungee.commands;
 
 import com.github.lory24.loadbalancer.bungee.ConfigValues;
 import com.github.lory24.loadbalancer.bungee.LoadBalancerBungee;
+import com.github.lory24.loadbalancer.bungee.impl.LobbiesUtils;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -28,14 +29,17 @@ public class HubCommand extends Command {
         ConfigValues configValues = LoadBalancerBungee.INSTANCE.getConfigValues();
         ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 
-        if (LoadBalancerBungee.INSTANCE.getPriorityManager().bestLobby.size() == 1) return;
+        if (LoadBalancerBungee.INSTANCE.getPriorityManager().bestLobby.size() == 1 && LobbiesUtils.isLobby(proxiedPlayer.getServer().getInfo().getName())) {
+            proxiedPlayer.sendMessage(new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues().getOnlyOneLobbyAviable()));
+            return;
+        }
 
         // If the player is in cooldown, send him a message and then return
         if (!playersInCooldown.contains(proxiedPlayer)) {
             // Add in cooldown
             playersInCooldown.add(proxiedPlayer);
-            ProxyServer.getInstance().getScheduler().schedule(LoadBalancerBungee.INSTANCE.getPlugin(), () -> playersInCooldown.remove(proxiedPlayer),
-                    configValues.getHubCommandCooldownMS(), TimeUnit.MILLISECONDS);
+            ProxyServer.getInstance().getScheduler().schedule(LoadBalancerBungee.INSTANCE.getPlugin(), () -> playersInCooldown
+                            .remove(proxiedPlayer), configValues.getHubCommandCooldownMS(), TimeUnit.MILLISECONDS);
 
             // Connect the player to the best server
             LoadBalancerBungee.INSTANCE.getPriorityManager().connectToBestLobby(proxiedPlayer);

@@ -19,7 +19,8 @@ public class ConfigValues {
     @Getter
     private String allLobbiesOfflineMessage,
                    hubCommandMessage,
-                   hubCommandInCooldownMessage;
+                   hubCommandInCooldownMessage,
+                   onlyOneLobbyAviable;
 
     // Hub command cooldown
     @Getter
@@ -36,6 +37,7 @@ public class ConfigValues {
         this.hubCommandMessage = color((String) yamlConfigSettings.get("hubCommandMessage"));
         this.hubCommandInCooldownMessage = color((String) yamlConfigSettings.get("hubCommandInCooldownMessage"));
         this.hubCommandCooldownMS = (int) yamlConfigSettings.get("hubCommandCooldownMS");
+        this.onlyOneLobbyAviable = (String) yamlConfigSettings.get("onlyOneLobbyAviable");
     }
 
     @Contract("_ -> new")

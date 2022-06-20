@@ -35,3 +35,8 @@ settings:
   # The amount of ms to wait before executing the hub command again
   #
   hubCommandCooldownMS: 2000
+
+  #
+  # The message for when someone tries to execute the hub command in the hub but there is only one lobby aviable
+  #
+  onlyOneLobbyAviable: "&cYou can't swich lobby because there is only one aviable and you're inside it."
