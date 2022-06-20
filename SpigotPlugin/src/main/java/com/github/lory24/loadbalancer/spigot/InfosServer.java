@@ -2,6 +2,8 @@ package com.github.lory24.loadbalancer.spigot;
 
 import com.github.lory24.loadbalancer.spigot.utils.ServerInfosInitializer;
 import com.google.gson.Gson;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,6 +14,9 @@ import java.net.Socket;
 public class InfosServer implements Runnable {
 
     private ServerSocket serverSocket;
+
+    @Getter @Setter
+    private boolean enabled = true;
 
     @Override
     public void run() {
@@ -26,7 +31,7 @@ public class InfosServer implements Runnable {
     }
 
     private void listening() throws IOException {
-        while (!Thread.interrupted()) {
+        while (!enabled) {
             Socket socket = this.serverSocket.accept();
             new Thread(() -> {
                 try {
