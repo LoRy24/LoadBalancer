@@ -3,6 +3,7 @@ package com.github.lory24.loadbalancer.bungee;
 import com.github.lory24.loadbalancer.bungee.commands.HubCommand;
 import com.github.lory24.loadbalancer.bungee.events.PluginMessageListener;
 import com.github.lory24.loadbalancer.bungee.events.ServerConnectListener;
+import com.github.lory24.loadbalancer.bungee.events.ServerDisconnectListener;
 import com.google.common.io.Files;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
@@ -74,8 +75,8 @@ public enum LoadBalancerBungee {
     }
 
     private void registerEvents() {
-        Arrays.stream(new Listener[]{new ServerConnectListener(), new PluginMessageListener()}).forEach(l -> ProxyServer.getInstance()
-                .getPluginManager().registerListener(this.getPlugin(), l));
+        Arrays.stream(new Listener[]{new ServerConnectListener(), new PluginMessageListener(), new ServerDisconnectListener()}).forEach(l ->
+                ProxyServer.getInstance().getPluginManager().registerListener(this.getPlugin(), l));
     }
 
     public void disable() {
