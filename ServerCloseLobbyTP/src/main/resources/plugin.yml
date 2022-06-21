@@ -1,4 +1,0 @@
-main: com.github.lory24.loadbalancer.servercloselobbytp.Entry
-author: LoRy24TV
-version: ${version}
-name: LoadBalancer_ServerCloseLobbyTP
