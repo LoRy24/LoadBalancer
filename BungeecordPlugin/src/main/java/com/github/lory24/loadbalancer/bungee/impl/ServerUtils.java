@@ -14,6 +14,7 @@ public class ServerUtils {
                 .collect(Collectors.toList()).contains(serverName);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isServerReachable(SocketAddress socketAddress) {
         // Check if the server is online
         try {
