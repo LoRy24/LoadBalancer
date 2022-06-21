@@ -7,14 +7,14 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.stream.Collectors;
 
-public class LobbiesUtils {
+public class ServerUtils {
 
     public static boolean isLobby(String serverName) {
         return LoadBalancerBungee.INSTANCE.getPriorityManager().bestLobby.stream().map(ServerStats::getServerName)
                 .collect(Collectors.toList()).contains(serverName);
     }
 
-    public static boolean isLobbyReachable(SocketAddress socketAddress) {
+    public static boolean isServerReachable(SocketAddress socketAddress) {
         // Check if the server is online
         try {
             Socket socket = new Socket();

@@ -1,8 +1,8 @@
 package com.github.lory24.loadbalancer.bungee;
 
-import com.github.lory24.loadbalancer.bungee.impl.LobbiesUtils;
 import com.github.lory24.loadbalancer.bungee.impl.ServerInfos;
 import com.github.lory24.loadbalancer.bungee.impl.ServerStats;
+import com.github.lory24.loadbalancer.bungee.impl.ServerUtils;
 import com.google.gson.Gson;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -30,13 +30,13 @@ public class PriorityManager {
     public void connectToBestLobby(@NotNull ProxiedPlayer proxiedPlayer) {
         connectToBestLobbyBlock: {
 
-            // If there isn't any joinable server
+            // If there isn't any join able server
             if (bestLobby.size() == 0) break connectToBestLobbyBlock;
 
             boolean found = false;
             ServerInfo serverInfo = null;
             for (ServerStats stats : bestLobby) {
-                if (proxiedPlayer.getServer().getInfo().getName().equals(stats.getServerName()) || !LobbiesUtils.isLobbyReachable(ProxyServer.getInstance()
+                if (proxiedPlayer.getServer().getInfo().getName().equals(stats.getServerName()) || !ServerUtils.isServerReachable(ProxyServer.getInstance()
                         .getServerInfo(stats.getServerName()).getSocketAddress()) || ProxyServer.getInstance().getServerInfo(stats.getServerName()).getPlayers().size() == stats
                         .getServerInfos().getMaxPlayers()) continue;
                 found = true;

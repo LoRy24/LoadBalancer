@@ -89,7 +89,7 @@ public enum LoadBalancerBungee {
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnstableApiUsage"})
     private void loadConfig() throws IOException {
         configLoadingProcess: {
-            if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir(); // Create the datafolder
+            if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir(); // Create the data-folder
             if (configFile.exists()) break configLoadingProcess;
             configFile.createNewFile();
             byte[] bytes = new byte[plugin.getResourceAsStream("config.yml").available()];
