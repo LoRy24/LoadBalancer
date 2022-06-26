@@ -26,6 +26,10 @@ public class ConfigValues {
     @Getter
     private int hubCommandCooldownMS;
 
+    // Define if the plugin should connect the player to a lobby on join
+    @Getter
+    private boolean connectToLobbyOnJoin;
+
     @SuppressWarnings("unchecked")
     public void loadConfig() {
         // Load the config
@@ -38,6 +42,7 @@ public class ConfigValues {
         this.hubCommandInCooldownMessage = color((String) yamlConfigSettings.get("hubCommandInCooldownMessage"));
         this.hubCommandCooldownMS = (int) yamlConfigSettings.get("hubCommandCooldownMS");
         this.onlyOneLobbyAviable = color((String) yamlConfigSettings.get("onlyOneLobbyAviable"));
+        this.connectToLobbyOnJoin = (boolean) yamlConfigSettings.get("connectToLobbyOnJoin");
     }
 
     @Contract("_ -> new")

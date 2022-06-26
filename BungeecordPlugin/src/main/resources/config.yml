@@ -40,3 +40,8 @@ settings:
   # The message for when someone tries to execute the hub command in the hub but there is only one lobby aviable
   #
   onlyOneLobbyAviable: "&cYou can't swich lobby because there is only one aviable and you're inside it."
+
+  #
+  # Define if the plugin should connect the player to a lobby when he connects to the proxy
+  #
+  connectToLobbyOnJoin: true

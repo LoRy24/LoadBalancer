@@ -16,6 +16,7 @@ public class ServerConnectListener implements Listener {
 
     @EventHandler
     public void onServerConnect(@NotNull ServerConnectEvent event) {
+        if (!LoadBalancerBungee.INSTANCE.getConfigValues().isConnectToLobbyOnJoin()) return;
         if (event.getReason().equals(ServerConnectEvent.Reason.JOIN_PROXY)) {
             firstConnectionBlock: {
                 // Best lobby reference
