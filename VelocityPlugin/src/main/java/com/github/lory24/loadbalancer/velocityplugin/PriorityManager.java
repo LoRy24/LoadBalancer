@@ -2,7 +2,6 @@ package com.github.lory24.loadbalancer.velocityplugin;
 
 import com.github.lory24.loadbalancer.velocityplugin.impl.ServerInfos;
 import com.github.lory24.loadbalancer.velocityplugin.impl.ServerStats;
-import com.github.lory24.loadbalancer.velocityplugin.impl.ServerUtils;
 import com.google.gson.Gson;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
