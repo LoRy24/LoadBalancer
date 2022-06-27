@@ -30,7 +30,7 @@ public class HubCommand extends Command {
         ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 
         if (LoadBalancerBungee.INSTANCE.getPriorityManager().bestLobby.size() == 1 && ServerUtils.isLobby(proxiedPlayer.getServer().getInfo().getName())) {
-            proxiedPlayer.sendMessage(new TextComponent(LoadBalancerBungee.INSTANCE.getConfigValues().getOnlyOneLobbyAviable()));
+            proxiedPlayer.sendMessage(new TextComponent(configValues.getOnlyOneLobbyAviable()));
             return;
         }
 
