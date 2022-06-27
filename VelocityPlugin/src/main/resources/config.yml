@@ -1,0 +1,47 @@
+#
+# Load Balancer • Bungeecord Edition v${version}
+#
+# Made with <3 by LoRy24
+#
+settings:
+
+  #
+  # The plugin only supports Lobbies load-balancer. In the future it will also support multi servers
+  # load balancers. The value of this key is an array of yml sections, that represents the host and the port of each
+  # *LoadBalancer Server*. The port and the host of every server is set in the config of the LoadBalancer Spigot
+  # plugin.
+  #
+  lobbies:
+    - host: "localhost"
+      port: 45623
+      inProxyConfigName: "lobby1"
+
+  #
+  # The message that will be displayed when all the lobbies servers are offline
+  #
+  allLobbiesOfflineMessage: "&cAll the lobbies are unreachable at the moment! Please try again later."
+
+  #
+  # The hub command message
+  #
+  hubCommandMessage: "&aTeleporting to hub server..."
+
+  #
+  # The message for when the player tries to execute the hub command without wait for *n* milliseconds
+  #
+  hubCommandInCooldownMessage: "&cPlease wait before executing this command again."
+
+  #
+  # The amount of ms to wait before executing the hub command again
+  #
+  hubCommandCooldownMS: 2000
+
+  #
+  # The message for when someone tries to execute the hub command in the hub but there is only one lobby aviable
+  #
+  onlyOneLobbyAviable: "&cYou can't swich lobby because there is only one aviable and you're inside it."
+
+  #
+  # Define if the plugin should connect the player to a lobby when he connects to the proxy
+  #
+  connectToLobbyOnJoin: true
