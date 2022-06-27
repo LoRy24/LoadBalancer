@@ -21,7 +21,8 @@ public class PluginMessageListener implements Listener {
         ByteArrayDataInput byteArrayDataInput = ByteStreams.newDataInput(event.getData());
 
         // Process the action
-        if (byteArrayDataInput.readUTF().equals("ConnectOnServerClose"))
-            LoadBalancerBungee.INSTANCE.getPriorityManager().connectToBestLobby((ProxiedPlayer) event.getSender());
+        if (!byteArrayDataInput.readUTF().equals("ConnectToServer")) return;
+
+        LoadBalancerBungee.INSTANCE.getPriorityManager().connectToBestLobby((ProxiedPlayer) event.getSender());
     }
 }
