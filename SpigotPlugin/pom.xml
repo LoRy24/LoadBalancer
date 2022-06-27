@@ -11,7 +11,7 @@
 
     <groupId>com.github.lory24.lobbybalancer</groupId>
     <artifactId>SpigotPlugin</artifactId>
-    <version>1.0.0-${parent.version}</version>
+    <version>${parent.version}</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
