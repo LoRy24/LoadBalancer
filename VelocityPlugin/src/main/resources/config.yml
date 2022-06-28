@@ -45,3 +45,9 @@ settings:
   # Define if the plugin should connect the player to a lobby when he connects to the proxy
   #
   connectToLobbyOnJoin: true
+
+  #
+  # The message that will be shown when the player get kicked from a server.
+  # Paramenters: %disconnected_from% and %reason%
+  #
+  kickFromServerMessage: "&cYou have been disconnected from server &8%disconnected_from% &cwith reason: &8%reason%"

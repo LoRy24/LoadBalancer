@@ -3,6 +3,7 @@ package com.github.lory24.loadbalancer.velocityplugin;
 import com.github.lory24.loadbalancer.velocityplugin.commands.HubCommand;
 import com.github.lory24.loadbalancer.velocityplugin.events.PluginMessageListener;
 import com.github.lory24.loadbalancer.velocityplugin.events.ServerConnectListener;
+import com.github.lory24.loadbalancer.velocityplugin.events.ServerKickListener;
 import com.google.common.io.Files;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.LegacyChannelIdentifier;
@@ -80,7 +81,7 @@ public enum LoadBalancerVelocity {
     }
 
     private void registerEvents() {
-        Arrays.stream(new Object[]{new ServerConnectListener(), new PluginMessageListener()}).forEach(o ->
+        Arrays.stream(new Object[]{new ServerConnectListener(), new PluginMessageListener(), new ServerKickListener()}).forEach(o ->
                 this.proxyServer.getEventManager().register(this.pluginEntry, o));
     }
 

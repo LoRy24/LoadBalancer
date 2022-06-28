@@ -3,6 +3,7 @@ package com.github.lory24.loadbalancer.velocityplugin.events;
 import com.github.lory24.loadbalancer.velocityplugin.LoadBalancerVelocity;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
+import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.Player;
 import org.jetbrains.annotations.NotNull;
@@ -10,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class PluginMessageListener {
 
     @SuppressWarnings("UnstableApiUsage")
+    @Subscribe
     public void onPluginMessage(@NotNull PluginMessageEvent event) {
         // Check if the channel is the LoadBalancer's one
         if (!event.getIdentifier().getId().equals("LoadBalancer")) return;
@@ -19,7 +21,6 @@ public class PluginMessageListener {
 
         // Process the action
         if (!byteArrayDataInput.readUTF().equals("ConnectToServer")) return;
-
         LoadBalancerVelocity.INSTANCE.getPriorityManager().connectToBestLobby((Player) event.getSource());
     }
 }

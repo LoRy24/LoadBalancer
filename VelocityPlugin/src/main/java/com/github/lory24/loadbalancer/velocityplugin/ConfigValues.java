@@ -21,7 +21,8 @@ public class ConfigValues {
     private TextComponent allLobbiesOfflineMessage,
                    hubCommandMessage,
                    hubCommandInCooldownMessage,
-                   onlyOneLobbyAviable;
+                   onlyOneLobbyAviable,
+                   kickFromServerMessage;
 
     // Hub command cooldown
     @Getter
@@ -44,6 +45,7 @@ public class ConfigValues {
         this.hubCommandCooldownMS = (int) yamlConfigSettings.get("hubCommandCooldownMS");
         this.onlyOneLobbyAviable = color((String) yamlConfigSettings.get("onlyOneLobbyAviable"));
         this.connectToLobbyOnJoin = (boolean) yamlConfigSettings.get("connectToLobbyOnJoin");
+        this.kickFromServerMessage = color((String) yamlConfigSettings.get("kickFromServerMessage"));
     }
 
     @Contract("_ -> new")

@@ -1,10 +1,14 @@
 package com.github.lory24.loadbalancer.velocityplugin.impl;
 
 import com.github.lory24.loadbalancer.velocityplugin.LoadBalancerVelocity;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
+import com.velocitypowered.api.proxy.server.ServerInfo;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ServerUtils {
@@ -28,5 +32,26 @@ public class ServerUtils {
         } catch (IOException ignored) { // Ignore the exception and teleport the player on another server
             return false;
         }
+    }
+
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    public static @Nullable RegisteredServer getServerWhereToConnectThePlayer() {
+
+        // Best lobby reference
+        List<ServerStats> bestLobby = LoadBalancerVelocity.INSTANCE.getPriorityManager().bestLobby;
+        if (bestLobby.size() == 0) return null;
+
+        // If the server is full, try with another one
+        ServerInfo serverInfo = null;
+        for (int i = 0; i < bestLobby.size(); i++) {
+            serverInfo = LoadBalancerVelocity.INSTANCE.getProxyServer().getServer(bestLobby.get(i).getServerName()).get().getServerInfo();
+            boolean maxed = LoadBalancerVelocity.INSTANCE.getProxyServer().getServer(bestLobby.get(i).getServerName()).get().getPlayersConnected().size() == bestLobby.get(i).getServerInfos().getMaxPlayers();
+            if (i == bestLobby.size() -1 && maxed) return null;
+            else if (maxed) continue;
+            break;
+
+        }
+
+        return LoadBalancerVelocity.INSTANCE.getProxyServer().getServer(serverInfo.getName()).get();
     }
 }
