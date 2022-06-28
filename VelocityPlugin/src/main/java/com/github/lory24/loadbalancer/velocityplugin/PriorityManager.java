@@ -2,6 +2,7 @@ package com.github.lory24.loadbalancer.velocityplugin;
 
 import com.github.lory24.loadbalancer.velocityplugin.impl.ServerInfos;
 import com.github.lory24.loadbalancer.velocityplugin.impl.ServerStats;
+import com.github.lory24.loadbalancer.velocityplugin.impl.ServerUtils;
 import com.google.gson.Gson;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
@@ -42,7 +43,8 @@ public class PriorityManager {
             for (ServerStats stats : bestLobby) {
                 ServerInfo currentServerInfos = proxyServer.getServer(stats.getServerName()).get().getServerInfo();
                 if (player.getCurrentServer().get().getServerInfo().getName().equals(stats.getServerName()) || LoadBalancerVelocity.INSTANCE.getProxyServer().getServer(stats.getServerName())
-                        .get().getPlayersConnected().size() == stats.getServerInfos().getMaxPlayers()) continue;
+                        .get().getPlayersConnected().size() == stats.getServerInfos().getMaxPlayers() || !ServerUtils.isServerReachable(
+                        currentServerInfos.getAddress())) continue;
                 found = true;
                 serverInfo = currentServerInfos;
                 break;

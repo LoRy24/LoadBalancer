@@ -47,7 +47,7 @@ public class ServerUtils {
             serverInfo = LoadBalancerVelocity.INSTANCE.getProxyServer().getServer(bestLobby.get(i).getServerName()).get().getServerInfo();
             boolean maxed = LoadBalancerVelocity.INSTANCE.getProxyServer().getServer(bestLobby.get(i).getServerName()).get().getPlayersConnected().size() == bestLobby.get(i).getServerInfos().getMaxPlayers();
             if (i == bestLobby.size() -1 && maxed) return null;
-            else if (maxed) continue;
+            else if (maxed || !isServerReachable(serverInfo.getAddress())) continue;
             break;
 
         }

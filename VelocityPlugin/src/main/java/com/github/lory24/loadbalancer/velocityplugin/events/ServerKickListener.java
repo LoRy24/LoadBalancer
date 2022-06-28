@@ -35,6 +35,8 @@ public class ServerKickListener {
 
         // Send the message
         LoadBalancerVelocity.INSTANCE.getProxyServer().getScheduler().buildTask(LoadBalancerVelocity.INSTANCE.getPluginEntry(),
-                () -> event.getPlayer().sendMessage(message)).delay(Duration.ofSeconds(2)).schedule();
+                () -> event.getPlayer().sendMessage(message))
+                .delay(Duration.ofSeconds(2))
+                .schedule();
     }
 }
