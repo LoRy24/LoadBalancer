@@ -16,27 +16,30 @@ public class ServerKickListener {
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     @Subscribe
     public void onPlayerKickFromServer(@NotNull KickedFromServerEvent event) {
-        // If the player disconnects
-        if (!event.getPlayer().isActive() || event.kickedDuringServerConnect()) return;
+        connectToLobby: {
+            // If the player disconnects
+            if (!event.getPlayer().isActive() || event.kickedDuringServerConnect()) break connectToLobby;
 
-        // Get the server
-        RegisteredServer registeredServer = ServerUtils.getServerWhereToConnectThePlayer();
-        if (registeredServer == null) {
-            event.getPlayer().disconnect(LoadBalancerVelocity.INSTANCE.getConfigValues().getAllLobbiesOfflineMessage());
-            return;
+            // Get the server
+            RegisteredServer registeredServer = ServerUtils.getServerWhereToConnectThePlayer();
+            if (registeredServer == null) break connectToLobby;
+
+            event.setResult(KickedFromServerEvent.RedirectPlayer.create(registeredServer));
+
+            // Create the message
+            String messageString = LegacyComponentSerializer.legacyAmpersand().serialize(LoadBalancerVelocity.INSTANCE.getConfigValues().getKickFromServerMessage());
+            Component message = LegacyComponentSerializer.legacyAmpersand().deserialize(messageString.replace("%disconnected_from%", event.getServer().getServerInfo().getName())
+                    .replace("%reason%", LegacyComponentSerializer.legacyAmpersand().serialize(event.getServerKickReason().get())));
+
+            // Send the message
+            LoadBalancerVelocity.INSTANCE.getProxyServer().getScheduler().buildTask(LoadBalancerVelocity.INSTANCE.getPluginEntry(),
+                            () -> event.getPlayer().sendMessage(message))
+                    .delay(Duration.ofSeconds(2))
+                    .schedule();
         }
 
-        event.setResult(KickedFromServerEvent.RedirectPlayer.create(registeredServer));
-
-        // Create the message
-        String messageString = LegacyComponentSerializer.legacyAmpersand().serialize(LoadBalancerVelocity.INSTANCE.getConfigValues().getKickFromServerMessage());
-        Component message = LegacyComponentSerializer.legacyAmpersand().deserialize(messageString.replace("%disconnected_from%", event.getServer().getServerInfo().getName())
-                .replace("%reason%", LegacyComponentSerializer.legacyAmpersand().serialize(event.getServerKickReason().get())));
-
-        // Send the message
-        LoadBalancerVelocity.INSTANCE.getProxyServer().getScheduler().buildTask(LoadBalancerVelocity.INSTANCE.getPluginEntry(),
-                () -> event.getPlayer().sendMessage(message))
-                .delay(Duration.ofSeconds(2))
-                .schedule();
+        if (!event.getPlayer().isActive()) return;
+        event.getPlayer().disconnect(LoadBalancerVelocity.INSTANCE.getConfigValues()
+                .getAllLobbiesOfflineMessage());
     }
 }
